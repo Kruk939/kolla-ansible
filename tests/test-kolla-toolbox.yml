@@ -1,6 +1,6 @@
 ---
 - name: Test the kolla_toolbox module
-  hosts: localhost
+  hosts: deployment
   gather_facts: false
   tasks:
     - name: Test successful & unchanged

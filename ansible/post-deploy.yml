@@ -1,6 +1,6 @@
 ---
 - name: Creating admin openrc file on the deploy node
-  hosts: localhost
+  hosts: deployment
   become: true
   tasks:
     - name: Template out admin-openrc.sh

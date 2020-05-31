@@ -15,7 +15,7 @@
 - name: Check if extra ml2 plugins exists
   find:
     path: "{{ node_custom_config }}/neutron/plugins/"
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
   run_once: True
   changed_when: False
   register: check_extra_ml2_plugins
@@ -27,7 +27,7 @@
 - name: Check if policies shall be overwritten
   stat:
     path: "{{ item }}"
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
   run_once: True
   register: neutron_policy
   with_first_found:

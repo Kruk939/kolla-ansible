@@ -69,7 +69,7 @@
       - "{{ node_custom_config }}/monasca/agent_plugins/"
       - "{{ node_custom_config }}/monasca/{{ inventory_hostname }}/agent_plugins/"
     patterns: '*.yaml'
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
   register: agent_plugins
 
 - name: Copying over monasca-agent-collector plugins
@@ -228,7 +228,7 @@
   find:
     path: "{{ node_custom_config }}/monasca/logstash_patterns"
     pattern: "*"
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
   run_once: True
   register: monasca_custom_logstash_patterns
 
@@ -362,7 +362,7 @@
 - name: Check for monasca-notification templates
   stat:
     path: "{{ node_custom_config }}/monasca/notification_templates"
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
   run_once: True
   register: notification_templates
 

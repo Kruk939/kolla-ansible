@@ -25,7 +25,7 @@
 - name: Checking custom prometheus_conf.yaml exists
   stat:
     path: "{{ node_custom_config }}/vitrage/prometheus_conf.yaml"
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
   register: result
   run_once: true
   failed_when: not result.stat.exists

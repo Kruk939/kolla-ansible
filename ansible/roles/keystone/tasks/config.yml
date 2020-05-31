@@ -15,7 +15,7 @@
 - name: Check if policies shall be overwritten
   stat:
     path: "{{ item }}"
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
   run_once: True
   register: keystone_policy
   with_first_found:
@@ -34,7 +34,7 @@
 - name: Check if Keystone domain-specific config is supplied
   stat:
     path: "{{ node_custom_config }}/keystone/domains"
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
   run_once: True
   register: keystone_domain_directory
 
@@ -94,7 +94,7 @@
     path: "{{ node_custom_config }}/keystone/domains"
     recurse: no
     file_type: file
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
   register: keystone_domains
   when: keystone_domain_directory.stat.exists
 
@@ -153,7 +153,7 @@
     keystone: "{{ keystone_services.keystone }}"
   stat:
     path: "{{ node_custom_config }}/keystone/keystone-paste.ini"
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
   run_once: True
   register: check_keystone_paste_ini
   when:
@@ -183,7 +183,7 @@
   changed_when: false
   register: cron_jobs_json
   when: keystone_token_provider == 'fernet'
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
 
 - name: Set fact with the generated cron jobs for building the crontab later
   set_fact:

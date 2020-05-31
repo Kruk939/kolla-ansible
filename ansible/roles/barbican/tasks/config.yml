@@ -32,7 +32,7 @@
   stat:
     path: "{{ item }}"
   run_once: True
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
   register: barbican_policy
   with_first_found:
     - files: "{{ supported_policy_format_list }}"
@@ -87,7 +87,7 @@
   stat:
     path: "{{ node_custom_config }}/barbican/barbican-api-paste.ini"
   run_once: True
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
   register: check_barbican_api_paste_ini
   when:
     - inventory_hostname in groups[service.group]

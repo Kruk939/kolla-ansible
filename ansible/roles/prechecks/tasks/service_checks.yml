@@ -14,7 +14,7 @@
 - name: Checking empty passwords in passwords.yml. Run kolla-genpwd if this task fails
   command:
     cmd: grep '^[^#].*:\s*$' "{{ node_config }}/passwords.yml"
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
   run_once: True
   register: result
   changed_when: false

@@ -35,7 +35,7 @@
     path: "{{ node_custom_config }}/prometheus/"
     pattern: "*.rules"
   run_once: True
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
   register: prometheus_alert_rules
   when:
     - enable_prometheus_alertmanager | bool
@@ -63,7 +63,7 @@
       - "{{ node_custom_config }}/prometheus/prometheus.yml.d"
       - "{{ node_custom_config }}/prometheus/{{ inventory_hostname }}/prometheus.yml.d"
     patterns: "*.yml"
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
   register: prometheus_config_overrides_result
   run_once: true
 
@@ -164,7 +164,7 @@
         paths: "{{ node_custom_config }}/prometheus/extras/"
         patterns: "*"
         recurse: true
-      delegate_to: localhost
+      delegate_to:  groups['deployment'][0]
       register: prometheus_config_extras_result
       run_once: true
 

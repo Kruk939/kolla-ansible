@@ -3,7 +3,7 @@
   template:
     src: bootstrap_cluster.js.j2
     dest: /tmp/mongodb_bootstrap_replication_set.js
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
   run_once: True
 
 - name: Bootstrapping the mongodb replication set
@@ -20,7 +20,7 @@
   file:
     path: /tmp/mongodb_bootstrap_replication_set.js
     state: absent
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
   changed_when: false
   failed_when: false
   run_once: True

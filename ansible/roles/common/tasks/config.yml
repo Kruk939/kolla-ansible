@@ -73,7 +73,7 @@
     pattern: "*.conf"
   run_once: True
   register: find_custom_fluentd_inputs
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
   when:
     - enable_fluentd | bool
 
@@ -124,7 +124,7 @@
     pattern: "*.conf"
   run_once: True
   register: find_custom_fluentd_outputs
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
   when:
     - enable_fluentd | bool
 
@@ -184,7 +184,7 @@
     pattern: "*.conf"
   run_once: True
   register: find_custom_fluentd_format
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
   when:
     - enable_fluentd | bool
 
@@ -222,7 +222,7 @@
     pattern: "*.conf"
   run_once: True
   register: find_custom_fluentd_filters
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
   when: enable_fluentd | bool
 
 - name: Copying over fluentd filter config files

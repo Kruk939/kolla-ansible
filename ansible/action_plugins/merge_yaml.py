@@ -71,7 +71,7 @@ author: Sean Mooney
 EXAMPLES = '''
 Merge multiple yaml files:
 
-- hosts: localhost
+- hosts: deployment
   tasks:
     - name: Merge yaml files
       merge_yaml:

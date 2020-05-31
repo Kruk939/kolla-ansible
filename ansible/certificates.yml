@@ -3,6 +3,6 @@
   when: kolla_enable_tls_backend | default(false) | bool
 
 - name: Apply role certificates
-  hosts: localhost
+  hosts: deployment
   roles:
     - certificates

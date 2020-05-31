@@ -107,7 +107,7 @@
   run_once: True
   stat:
     path: "{{ node_custom_config }}/swift/{{ item }}"
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
   register: swift_ring_files
   with_items:
     - "account.builder"

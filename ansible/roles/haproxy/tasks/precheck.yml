@@ -41,7 +41,7 @@
   run_once: true
   stat:
     path: "{{ kolla_external_fqdn_cert }}"
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
   register: haproxy_cert_file
   changed_when: false
   when: kolla_enable_tls_external | bool
@@ -58,7 +58,7 @@
   run_once: true
   stat:
     path: "{{ kolla_internal_fqdn_cert }}"
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
   register: haproxy_internal_cert_file
   changed_when: false
   when: kolla_enable_tls_internal | bool

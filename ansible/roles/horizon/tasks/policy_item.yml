@@ -7,7 +7,7 @@
 - name: Check if policies shall be overwritten
   stat:
     path: "{{ fullpath }}"
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
   run_once: True
   register: overwritten_files
   with_first_found:

@@ -16,7 +16,7 @@
   stat:
     path: "{{ item }}"
   run_once: True
-  delegate_to: localhost
+  delegate_to:  groups['deployment'][0]
   register: tacker_policy
   with_first_found:
     - files: "{{ supported_policy_format_list }}"
